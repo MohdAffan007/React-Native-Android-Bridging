@@ -28,22 +28,22 @@ export default function FirstScreen(props) {
     <View style={styles.container}>
       <Text style={styles.highScoresTitle}>React Native Screen</Text>
       <Text style={styles.highScoresTitle}>
-      sss
+     Some Text
       </Text>
       <TouchableOpacity onPress={handleBackButton}>
         <Text style={styles.backButton}>Back to Android</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {
+      {/* <TouchableOpacity onPress={() => {
 
         navigation.navigate('SecondScreen')
       }}>
-        <Text >Go To React Native Second scren</Text>
-      </TouchableOpacity>
+        <Text >Go To React Native Second screen</Text>
+      </TouchableOpacity> */}
       <Text onPress={() => {
         console.log('check it', NativeModules?.Connectivity)
         Connectivity?.goToSecondActivity()
       }} style={{ marginTop: 10 }}>Move to second Native screen</Text>
-      <TouchableOpacity style={{ backgroundColor: 'red' }} onPress={()=>navigation.navigate('SecondScreen')}>
+      <TouchableOpacity  onPress={()=>navigation.navigate('SecondScreen')}>
         <Text>
           Move To Second RN Screen
         </Text>
