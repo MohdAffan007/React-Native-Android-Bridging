@@ -2,6 +2,7 @@ package com.example.onlinedoctorappointmentservice;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -35,6 +36,7 @@ public class MyReactActivity extends AppCompatActivity implements DefaultHardwar
         // Packages that cannot be autolinked yet can be added manually here, for example:
         // Remember to include them in `settings.gradle` and `app/build.gradle` too.
         Bundle initialProps = new Bundle();
+        mReactRootView.setBackgroundColor( Color.parseColor("#000000") );
 
         Intent intent = getIntent();
         Bundle initialProp = intent.getBundleExtra("initialProps");
