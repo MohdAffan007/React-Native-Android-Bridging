@@ -11,6 +11,7 @@ import {
     FlatList
   } from "react-native";
 export default function ChooseYourApps() {
+    const Connectivity = NativeModules?.Connectivity
     const mockDataApps = [
         { id: '1', title: 'Prime', },
         { id: '2', title: 'Disney' },
@@ -51,6 +52,21 @@ export default function ChooseYourApps() {
           </TouchableOpacity>
         );
       };
+
+      const handleConfirm = () => {
+        if (isConfirmButtonEnabled) {
+            const selectedAppsData = mockDataApps.filter(app => selectedApps.includes(app.id));
+            const selectedAppsJson = JSON.stringify(selectedAppsData);
+            Connectivity?.goToSecondActivity(selectedAppsJson)
+                .then(response => {
+                    console.log('Navigation success:', response);
+                })
+                .catch(error => {
+                    console.log('Navigation error:', error);
+                });
+        }
+    };
+
     const isConfirmButtonEnabled = selectedApps.length >= 6;
       return (
         <SafeAreaView style={[styles.container, { }]}>
@@ -67,17 +83,12 @@ export default function ChooseYourApps() {
         <TouchableOpacity
                 style={[styles.confirmButton, isConfirmButtonEnabled && styles.enabledButton]}
                 disabled={!isConfirmButtonEnabled}
-                onPress={() => {
-                  if (isConfirmButtonEnabled) {
-                    console.log('Navigate to next screen with selected apps:', selectedApps);
-                  }
-                }}
+                onPress={handleConfirm}
               >
                 <Text style={{color:'black'}}>Confirm & Proceed</Text>
               </TouchableOpacity>
           </View>
         </View>
-    
         </SafeAreaView>
       );
     };
